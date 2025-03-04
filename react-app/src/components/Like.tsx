@@ -1,21 +1,25 @@
+import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { CiHeart } from "react-icons/ci";
 import styled from "styled-components";
 
 interface LikeProps {
-  color: string;
-  onLike: () => void;
-  like: boolean;
+  onClick: () => void;
 }
 
-function Like({ like, color, onLike }: LikeProps) {
-  //const [like, setLike] = useState(false);
+function Like({ onClick }: LikeProps) {
+  const [status, setStatus] = useState(true);
 
-  return like ? (
-    <AiFillHeart onClick={onLike} color={color} />
-  ) : (
-    <CiHeart color={color} onClick={onLike} />
-  );
+  const toggle = () => {
+    setStatus(!status);
+    onClick();
+  };
+
+  if (status) {
+    return <AiFillHeart onClick={toggle} color="pink" size={20} />;
+  } else {
+    return <CiHeart onClick={toggle} size={20} />;
+  }
 }
 
 export default Like;

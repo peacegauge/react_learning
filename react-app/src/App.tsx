@@ -7,7 +7,6 @@ import Like from "./components/Like";
 function App() {
   const [alertVisible, setAlertVisibility] = useState(true);
   const items = ["Paris", "New York", "Denver"];
-  const [like, setLike] = useState(false);
 
   return (
     <div>
@@ -22,11 +21,11 @@ function App() {
         heading="Cities"
         onSelectedItem={(item) => console.log(item)}
       /> */}
-      {like ? (
-        <Like like={like} color="pink" onLike={() => setLike(false)} />
-      ) : (
-        <Like like={like} color="black" onLike={() => setLike(true)} />
-      )}
+      <Like
+        onClick={() => {
+          console.log("clicked");
+        }}
+      />
     </div>
   );
 }
